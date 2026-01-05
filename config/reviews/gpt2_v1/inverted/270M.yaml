@@ -1,0 +1,30 @@
+name: '270M'
+data_dir: './data/reviews/v_32768'
+out_dir: './out/reviews/gpt2_v1/inverted/270M'
+dataloader: 'standard'
+log: True
+init_from: 'new'
+
+model:
+  name: 'gpt2_v1'
+  total_batch_size: 131072
+  batch_size: 256
+  block_size: 512
+  n_heads: 16
+  n_layer: 16
+  n_embd: 1024
+  vocab_size: 32768
+  max_iters: 50000
+  device: 'cuda'
+  eval_iters: 100
+  eval_interval: 100
+  learning_rate: 0.0003
+  warmup_iters: 1000
+  lr_decay_iters: 49000
+  beta1: 0.9
+  beta2: 0.95
+  clip_grad: True
+  weight_decay: 0.05
+  eps: 0.00000001
+  dropout: 0
+  bias: 0
