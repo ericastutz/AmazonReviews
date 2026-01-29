@@ -133,7 +133,8 @@ def train(model,optimizer,tok,dl_train,dl_val,iter_global=0,best_val_loss=1000,t
             
             if generate_text:
                 seed_id = tok.encode('<|sos|>')
-                _,text = model.sample(tok,seed_idx=seed_id,max=100)
+                seed_idx = torch.tensor(seed_id, dtype=torch.long, device=device).unsqueeze(0)
+                _,text = model.sample(tok,seed_idx=seed_idx,max=100)
                 print(text)
         
         optimizer.zero_grad(set_to_none=True)
@@ -167,8 +168,6 @@ def train(model,optimizer,tok,dl_train,dl_val,iter_global=0,best_val_loss=1000,t
 
         print(f"iter {iter_global} | loss {loss_accum:.4f} | token loss {token_loss:.4f} | dt {dt*1000:.2f}ms | tok/sec {tokens_per_sec:.2f} | train epoch {dl_train.epoch}",flush=True)
 
-    if out_dir is not None:
-        fig_token.savefig(os.path.join(out_dir, "token_loss_final.png"))
     est_loss = model.estimate_loss(dl_train, dl_val)
     print(f"iter {iter_global} | train loss {loss_accum:.4f} | dt {dt*1000:.2f}ms | tok/sec {tokens_per_sec:.2f} | train epoch {dl_train.epoch}",flush=True)
 

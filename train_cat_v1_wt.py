@@ -104,7 +104,7 @@ def train(model,optimizer,tok,dl_train,dl_val,iter_global=0,best_val_loss=1000,t
     # plotting
     plt.ioff()
     fig_token, ax_token = plt.subplots()
-    fig_outcome, ax_outcome = plt.subplots()
+    fig_attr, ax_attr = plt.subplots()
 
     while iter_global <= model.config.max_iters:
 
@@ -188,9 +188,6 @@ def train(model,optimizer,tok,dl_train,dl_val,iter_global=0,best_val_loss=1000,t
 
         print(f"iter {iter_global} | loss {loss_accum:.4f} | token loss {token_loss:.4f} | attr_loss {attr_loss:.4f} | dt {dt*1000:.2f}ms | tok/sec {tokens_per_sec:.2f} | train epoch {dl_train.epoch}",flush=True)
 
-    if out_dir is not None:
-        fig_token.savefig(os.path.join(out_dir, "token_loss_final.png"))
-        fig_outcome.savefig(os.path.join(out_dir, "attr_loss_final.png"))
     est_loss = model.estimate_loss(dl_train, dl_val)
     print(f"iter {iter_global} | train loss {loss_accum:.4f} | dt {dt*1000:.2f}ms | tok/sec {tokens_per_sec:.2f} | train epoch {dl_train.epoch}",flush=True)
 

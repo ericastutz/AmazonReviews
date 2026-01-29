@@ -1,0 +1,32 @@
+name: '957M_0.8'
+data_dir: './data/v_32768'
+out_dir: './out/cat_v1_wt/957M/957M_0.8'
+dataloader: 'cat'
+log: True
+init_from: 'resume'
+
+model:
+  name: 'cat_v1_wt'
+  total_batch_size: 262144
+  batch_size: 64
+  block_size: 512
+  n_heads: 32
+  n_layer: 32
+  n_embd: 1536
+  vocab_size: 32768
+  max_iters: 50000
+  attr_size: 6
+  device: 'cuda'
+  eval_iters: 100
+  eval_interval: 100
+  learning_rate: 0.00025
+  warmup_iters: 1000
+  lr_decay_iters: 49000
+  beta1: 0.9
+  beta2: 0.95
+  clip_grad: True
+  weight_decay: 0.05
+  eps: 0.00000001
+  dropout: 0
+  bias: 0
+  attr_weight: 0.8

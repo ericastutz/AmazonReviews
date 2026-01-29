@@ -1,0 +1,32 @@
+name: '5M_1.0'
+data_dir: './data/v_32768'
+out_dir: './out/cat_v1_wt/5M/5M_1.0'
+dataloader: 'cat'
+log: True
+init_from: 'new'
+
+model:
+  name: 'cat_v1_wt'
+  total_batch_size: 262144
+  batch_size: 512
+  block_size: 512
+  n_heads: 2
+  n_layer: 2
+  n_embd: 128
+  vocab_size: 32786
+  attr_size: 6
+  max_iters: 50000
+  device: 'cuda'
+  eval_iters: 100
+  eval_interval: 100
+  learning_rate: 0.0003
+  warmup_iters: 1000
+  lr_decay_iters: 49000
+  beta1: 0.9
+  beta2: 0.95
+  clip_grad: True
+  weight_decay: 0.05
+  eps: 0.00000001
+  dropout: 0
+  bias: 0
+  attr_weight: 1.0
